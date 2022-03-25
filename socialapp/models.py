@@ -9,3 +9,5 @@ class Message(models.Model):
 
     class Meta:
         ordering = ('date_added',)
+
+
