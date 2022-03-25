@@ -1,5 +1,6 @@
 from django.db import models
-
+from Accounts.models import *
+from django.conf import settings
 # Create your models here.
 class Message(models.Model):
     username = models.CharField(max_length=255)
@@ -9,3 +10,18 @@ class Message(models.Model):
 
     class Meta:
         ordering = ('date_added',)
+
+class Tag(models.Model):
+    name=models.CharField(unique=True,max_length=15)
+
+class Groupdata(models.Model):
+    groupname=models.CharField(unique=True,max_length=20)
+    admin=models.ForeignKey( settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING,related_name="admin")
+    tag=models.ManyToManyField(Tag)
+    groupmembers = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name="groupmember")
+
+
+
+
+
+
