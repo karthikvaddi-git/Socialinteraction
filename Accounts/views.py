@@ -99,7 +99,7 @@ def login(request):
        
        if user is not None:
            auth_login(request, user)
-           return redirect('/')
+           return redirect('profile')
        else:
            messages.info(request, 'Username or password are not correct')
     
@@ -110,4 +110,7 @@ def logoutuser(request):
     if request.method == "POST":
         logout(request)
         return redirect('user_login')
+    return redirect('/')
+
+def profile(request):
     return redirect('/')
