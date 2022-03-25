@@ -1,0 +1,113 @@
+{% load static %}
+{% load myfilters %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title> Signup! </title>
+<style>
+body {
+    background: #3d5fba;
+    background: linear-gradient(to right, #3d5fba, #805f36);
+    }
+    
+    .card-img-left {
+    width: 45%;
+    /* Link to your background image using in the property below! */
+    background: scroll center url('http://127.0.0.1:8000/static/images/banner/menu.jpg');
+    background-size: cover;
+    }
+    
+    .btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+    }
+    
+    .btn-google {
+    color: white !important;
+    background-color: #ea4335;
+    }
+    
+    .btn-facebook {
+    color: white !important;
+    background-color: #3b5998;
+    }
+      
+</style>
+
+  </head>
+  <body>
+    <!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
+{% if messages %}
+{% for message in messages %}
+    <div class="text-center alert alert-{{ message.tags }} alert-dismissible fade show" role="alert" style="margin-bottom:0px;">
+        {{ message|safe }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{% endfor %}
+{% endif %}
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 col-xl-9 mx-auto">
+          <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+            <div class="card-img-left d-none d-md-flex">
+              <!-- Background image for card set in CSS! -->
+            </div>
+            <div class="card-body p-4 p-sm-5">
+              <h2 class="card-title text-center mb-5 fw-light fs-5">Sign Up</h2>
+              <form method="POST">
+                {% csrf_token %}
+                <div class="form-floating mb-3">
+                <p class="errorlist">{{ form.non_field_errors }}</p>
+                  {% comment %} <input type="text" class="form-control" id="floatingInputUsername" placeholder="myusername" required autofocus> {% endcomment %}
+                  <label for="floatingInputEmail">Your Email</label>
+                  {{ form.email.errors }}
+                  {{ form.email|addclass:'form-control'|addplaceholder:'Email Address'}}
+                </div>
+  
+                <div class="form-floating mb-3">
+                  <label for="floatingInputNumber">Mobile Number</label>
+                  {{ form.phone.errors }}
+                  {{ form.phone|addclass:'form-control'|addplaceholder:'Mobile Number'}}
+
+                </div>
+                <div class="form-floating mb-3">
+                  <label for="floatingPassword">Password</label>
+                  {{ form.password1.errors }}
+                  {{ form.password1|addclass:'form-control'|addplaceholder:'Password' }}
+                </div>
+  
+                <div class="form-floating mb-3">
+                  <label for="floatingPasswordConfirm">Confirm Password</label>
+                  {{ form.password2.errors }}
+                  {{ form.password2|addclass:'form-control'|addplaceholder:'Confirm Password' }}
+                </div>
+  
+                <div class="d-grid mb-2">
+                  <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" type="submit">Register</button>
+                </div>
+  
+                <h5><a class="d-block text-center mt-2 small" href="/auth/login">Have an account? Sign In</a></h5>
+  
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
