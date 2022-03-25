@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'socialapp',
     'django.contrib.staticfiles',
     'channels',
+    'call',
     'Accounts',
 ]
 

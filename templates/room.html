@@ -50,6 +50,7 @@
        {{ room_name|json_script:"json-roomname" }}
        {{ username|json_script:"json-username" }}
 
+
         <script>
             function scrollToBottom() {
                 let objDiv = document.getElementById("chat-messages");
@@ -57,6 +58,7 @@
             }
 
             scrollToBottom();
+
 
             const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
             const userName = JSON.parse(document.getElementById('json-username').textContent);
