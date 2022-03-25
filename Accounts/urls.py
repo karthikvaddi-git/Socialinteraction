@@ -9,6 +9,9 @@ urlpatterns = [
     path('login', views.login, name='user_login'),
     path('logout', views.logoutuser, name='logout'),    
     path('activate/<slug:uidb64>/<slug:token>/', views.activate, name='activate'),
+    path('intrest', views.addintrest, name='addintrest'),
+    path('profile', views.profile, name='profile'),
+    
     
     
     #Forgot password

@@ -22,3 +22,16 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
     phone              = models.CharField(max_length=255, validators=[phone_regex], blank = True, null=True)
     REQUIRED_FIELDS=[]
     objects = CustomUserManager()
+
+
+class userprofile(models.Model):
+    user         = models.OneToOneField(CustomUser,on_delete=models.CASCADE)
+    profileimage = models.ImageField(default=" ",upload_to='media/dynamic/img/user_image')
+    name   = models.CharField(default=" ",max_length=40)
+    description = models.TextField()
+    location = models.CharField(default=" ",max_length=150)
+    intrests = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.name
+    

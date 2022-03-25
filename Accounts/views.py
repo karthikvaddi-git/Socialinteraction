@@ -13,6 +13,7 @@ from crispy_forms.layout import Submit
 from Accounts.forms import *
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from Accounts.forms import *
 
 
 
@@ -111,3 +112,23 @@ def logoutuser(request):
         logout(request)
         return redirect('user_login')
     return redirect('/')
+
+def addintrest(request):
+    
+    return render(request, 'intrestpage.html')
+
+def profile(request):
+    if request.method == "POST":
+        form = userprofile(request.POST)
+        profile = form.save(commit=False)
+        profile.user = request.user
+        profile.save()
+        return redirect('/')
+    else:
+        u_form = userprofile(instance=request.user)
+
+    context = {
+        'u_form': u_form,
+    }
+    return render(request, 'profile.html', context )
+
