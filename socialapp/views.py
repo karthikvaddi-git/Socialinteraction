@@ -5,6 +5,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
 from django.contrib.auth.decorators import login_required
+from .forms import *
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
 
 @login_required
 def index(request):
@@ -18,9 +22,6 @@ def room(request, room_name):
     print("TEHR REQUIRED USER")
     print(str(request.user))
     username=str(request.user)
-
-
-
     messages = Message.objects.filter(room=room_name)[0:25]
     return render(request, 'room.html', {'room_name': room_name, 'username': username, 'messages': messages})
 
@@ -33,12 +34,19 @@ def group(request):
     print(context)
     print(request.user)
     return render(request,'groupinfo.html',context)
-@login_required
-def creategroup(request):
-    if request.method=="GET":
-        return render(request,"create_group.html")
-    if request.method=="POST":
-        print(request.POST)
-        return render(request,"create_group.html")
+
+class creategroup(LoginRequiredMixin,CreateView):
+    template_name = 'create_group.html'
+    success_url = reverse_lazy('group')
+    form_class = groupform
+    
+    def form_valid(self, form):
+        user = self.request.user
+        user.save()
+        form.instance.groupmembers= user
+        form.instance.admin = user
+        return super().form_valid(form)
+
+
 
 

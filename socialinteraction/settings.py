@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'channels',
     'Accounts',
+
     'fundraise',
+
 
     'crispy_forms',
     'mainwebsite',
@@ -156,6 +158,7 @@ DEFAULT_FROM_EMAIL = 'Testing <jhasapna544@gmail.com>'
 
 
 # Media roots
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/dynamic/img')
+MEDIA_ROOT = os.path.join(BASE_DIR, '/media/')
+MEDIA_URL = '/media/'
 LOGIN_URL='user_login'
 LOGOUT_REDIRECT_URL='home'

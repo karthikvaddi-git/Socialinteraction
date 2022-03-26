@@ -90,17 +90,13 @@ def activate(request, uidb64, token):
         return HttpResponse('Activation link is invalid or your account is already Verified! Try To Login')
 
 
-@login_required
-def home(request):
-    return render(request,"home.html")
-
-
 def login(request):
     if request.method == 'POST':
        username = request.POST.get('username')
        password = request.POST.get('password')
        user = authenticate(request, username=username, password=password)
        
+
        if user is not None:
            auth_login(request, user)
 
@@ -112,37 +108,34 @@ def login(request):
 
        else:
            messages.info(request, 'Username or password are not check username  correct')
+
+
+    else:
+        messages.info(request, 'Username or password are not correct')
+
     
     context = {}
     return render (request, 'registration/login.html', context)
 
 def logoutuser(request):
-
         logout(request)
         return redirect('user_login')
-
-
-
-
-
-def addintrest(request):
     
+def addintrest(request):
     return render(request, 'intrestpage.html')
 
-def profilecreate(request):
-    if request.method == "POST":
-        form = userprofile(request.POST)
-        profile = form.save(commit=False)
-        profile.user = request.user
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-        else:
-            u_form = userprofile(instance=request.user)
 
-    context = {
-        'u_form': u_form,
-    }
-    return redirect('profile')
-
-
+class profilecreate(CreateView):
+    template_name = 'profile.html'
+    success_url = '/'
+    form_class = userprofiles
+    
+    def form_valid(self, form):
+        user = self.request.user
+        user.save()
+        form.instance.user= user
+        return super().form_valid(form)
+    
+@login_required
+def home(request):
+    return render(request,'home.html')

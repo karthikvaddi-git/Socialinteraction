@@ -9,6 +9,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator,FileExte
 class CustomUser(AbstractBaseUser,PermissionsMixin):
     email              = LowercaseEmailField(('email adress'),unique=True)
     # phone_no = models.IntegerField(('phone'),unique=True,default="Null")
+    name   = models.CharField(default=" ",max_length=100,blank=True, null=True)
     is_staff           = models.BooleanField(default=False)
     is_active          = models.BooleanField(default=True)
     date_joined        = models.DateField(default=timezone.now)
@@ -24,6 +25,7 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
     REQUIRED_FIELDS=[]
 
     objects = CustomUserManager()
+    
 class comments(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     comment = models.CharField(max_length=300)
@@ -58,21 +60,16 @@ class fundraiser(models.Model):
         return self.amount - self.amount_received
     
     def __str__(self):
-        heading = self.title
         return self.title + " recives $" +str(self.current_amount)
 
 class userprofile(models.Model):
     user         = models.OneToOneField(CustomUser,on_delete=models.CASCADE)
     profileimage = models.ImageField(default=" ",upload_to='media/dynamic/img/user_image')
-    name   = models.CharField(default=" ",max_length=40)
     description = models.TextField()
     location = models.CharField(default=" ",max_length=150)
     intrests = models.CharField(max_length=150)
     date_joined = models.DateTimeField(auto_now_add=True,blank=True,null=True)
 
-
-
     def __str__(self):
         return self.name
-
 
