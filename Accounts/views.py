@@ -105,7 +105,7 @@ def login(request):
            auth_login(request, user)
 
 
-           return redirect('/')
+           return redirect('home')
 
 
 
