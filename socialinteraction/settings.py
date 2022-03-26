@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'channels',
     'Accounts',
+    'fundraise',
 
     'crispy_forms',
     'mainwebsite',
