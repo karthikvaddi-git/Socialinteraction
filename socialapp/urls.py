@@ -5,7 +5,7 @@ urlpatterns = [
    # path('admin/', admin.site.urls),
     path('group',views.group),
     path('chat/',views.index),
-    path('creategroup/',views.creategroup),
+    path('creategroup/',views.creategroup,name='creategroup'),
     path('chat/<str:room_name>/',views.room),
 
 
