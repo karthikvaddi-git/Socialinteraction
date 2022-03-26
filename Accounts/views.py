@@ -103,15 +103,8 @@ def login(request):
        
        if user is not None:
            auth_login(request, user)
-<<<<<<< HEAD
-           return redirect('auth/profile')
-=======
-
            return redirect('profilecreate')
 
-
-
->>>>>>> cb3a11076357dee7de16e92b5e349be3fb0f2888
        else:
            messages.info(request, 'Username or password are not correct')
     

@@ -24,6 +24,7 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
     REQUIRED_FIELDS=[]
 
     objects = CustomUserManager()
+    
 class comments(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     comment = models.CharField(max_length=300)
@@ -69,13 +70,7 @@ class userprofile(models.Model):
     location = models.CharField(default=" ",max_length=150)
     intrests = models.CharField(max_length=150)
     date_joined = models.DateTimeField(auto_now_add=True,blank=True,null=True)
-    fundraiser = models.ForeignKey(fundraiser, on_delete=models.CASCADE,blank = True, null=True)
-    normalpost = models.ForeignKey(Userpost, on_delete=models.CASCADE,blank = True, null=True)
 
     def __str__(self):
         return self.name
-<<<<<<< HEAD
-=======
-    
->>>>>>> cb3a11076357dee7de16e92b5e349be3fb0f2888
 
