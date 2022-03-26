@@ -15,10 +15,6 @@ from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from Accounts.forms import *
-
-
-
-
 from socialinteraction import settings
 from django.core.mail import EmailMessage
 from .tokens import account_activation_token
@@ -31,6 +27,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
 
 class UserRegistration(CreateView):
@@ -91,9 +88,13 @@ def activate(request, uidb64, token):
         # return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
         return HttpResponse('Activation link is invalid or your account is already Verified! Try To Login')
-                
-        
-    
+
+
+@login_required
+def home(request):
+    return render(request,"home.html")
+
+
 def login(request):
     if request.method == 'POST':
        username = request.POST.get('username')
