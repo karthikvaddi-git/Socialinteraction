@@ -100,7 +100,7 @@ def login(request):
        
        if user is not None:
            auth_login(request, user)
-           return redirect('/')
+           return redirect('auth/profile')
        else:
            messages.info(request, 'Username or password are not correct')
     
@@ -122,10 +122,11 @@ def profile(request):
         form = userprofile(request.POST)
         profile = form.save(commit=False)
         profile.user = request.user
-        profile.save()
-        return redirect('/')
-    else:
-        u_form = userprofile(instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+        else:
+            u_form = userprofile(instance=request.user)
 
     context = {
         'u_form': u_form,

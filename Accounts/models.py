@@ -4,6 +4,7 @@ from .models_fields import LowercaseEmailField
 from django.utils import timezone
 from django.core.validators import RegexValidator
 from Accounts.managers import CustomUserManager
+from django.core.validators import MaxValueValidator, MinValueValidator,FileExtensionValidator
 # Create your models here.
 class CustomUser(AbstractBaseUser,PermissionsMixin):
     email              = LowercaseEmailField(('email adress'),unique=True)
@@ -22,7 +23,42 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
     phone              = models.CharField(max_length=255, validators=[phone_regex], blank = True, null=True)
     REQUIRED_FIELDS=[]
     objects = CustomUserManager()
-
+class comments(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=300)
+        
+class Userpost(models.Model):
+    user = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    image = models.ImageField(default=" ",upload_to='media/dynamic/img/user_image',validators=[FileExtensionValidator( ['png','jpg'] )])
+    date_added = models.DateTimeField(auto_now_add=True)
+    likes = models.IntegerField(
+        default=1,
+        validators=[MinValueValidator(1)]
+        )
+    comments = models.ForeignKey(comments, on_delete=models.CASCADE)
+    
+    
+class fundraiser(models.Model):
+    user = models.ForeignKey(CustomUser,on_delete=models.CASCADE,blank = True, null=True)
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    image = models.ImageField(default=" ",upload_to='media/dynamic/img/user_image',validators=[FileExtensionValidator( ['png','jpg'] )])
+    date_added = models.DateTimeField(auto_now_add=True)
+    amount = models.IntegerField(
+        default=1,
+        validators=[MaxValueValidator(1000000000), MinValueValidator(1)]
+        )
+    amount_received = models.IntegerField(default=0,validators=[MaxValueValidator(1000000000), MinValueValidator(0)])
+    
+    @property
+    def current_amount(self):
+        return self.amount - self.amount_received
+    
+    def __str__(self):
+        heading = self.title
+        return self.title + " recives $" +str(self.current_amount)
 
 class userprofile(models.Model):
     user         = models.OneToOneField(CustomUser,on_delete=models.CASCADE)
@@ -31,7 +67,10 @@ class userprofile(models.Model):
     description = models.TextField()
     location = models.CharField(default=" ",max_length=150)
     intrests = models.CharField(max_length=150)
+    date_joined = models.DateTimeField(auto_now_add=True,blank=True,null=True)
+    fundraiser = models.ForeignKey(fundraiser, on_delete=models.CASCADE,blank = True, null=True)
+    normalpost = models.ForeignKey(Userpost, on_delete=models.CASCADE,blank = True, null=True)
 
     def __str__(self):
         return self.name
-    
+
