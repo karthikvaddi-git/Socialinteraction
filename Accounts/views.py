@@ -13,10 +13,9 @@ from crispy_forms.layout import Submit
 from Accounts.forms import *
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
-<<<<<<< HEAD
-=======
+
 from Accounts.forms import *
->>>>>>> origin/shivamjha
+
 
 
 
@@ -103,11 +102,11 @@ def login(request):
        
        if user is not None:
            auth_login(request, user)
-<<<<<<< HEAD
-           return redirect('profile')
-=======
-           return redirect('/')
->>>>>>> origin/shivamjha
+
+           return redirect('profilecreate')
+
+
+
        else:
            messages.info(request, 'Username or password are not correct')
     
@@ -120,15 +119,14 @@ def logoutuser(request):
         return redirect('user_login')
     return redirect('/')
 
-<<<<<<< HEAD
-def profile(request):
-    return redirect('/')
-=======
+
+
+
 def addintrest(request):
     
     return render(request, 'intrestpage.html')
 
-def profile(request):
+def profilecreate(request):
     if request.method == "POST":
         form = userprofile(request.POST)
         profile = form.save(commit=False)
@@ -141,6 +139,6 @@ def profile(request):
     context = {
         'u_form': u_form,
     }
-    return render(request, 'profile.html', context )
+    return redirect('profile')
 
->>>>>>> origin/shivamjha
+

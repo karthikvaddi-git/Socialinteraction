@@ -19,10 +19,10 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('socialapp.urls')),
-<<<<<<< HEAD
+
     path('', include('Accounts.urls')),
-=======
-    path('auth/', include('Accounts.urls')),
-    path('user/', include('mainwebsite.urls')),
->>>>>>> origin/shivamjha
+    path('',include('mainwebsite.urls')),
+
+
+
 ]

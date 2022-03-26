@@ -6,9 +6,7 @@ from django import forms
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-<<<<<<< HEAD
-        fields = ('email','phone',)
-=======
+
         fields = ('email','phone',)
 
 class userintrest(ModelForm):
@@ -20,4 +18,4 @@ class userprofile(ModelForm):
     class Meta:
         model = userprofile
         fields = ('name','profileimage','description','location','intrests',)
->>>>>>> origin/shivamjha
+

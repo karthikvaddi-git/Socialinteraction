@@ -4,6 +4,6 @@ from . import views
 urlpatterns = [
    # path('admin/', admin.site.urls),
     path('chat/',views.index),
-    path('<str:room_name>/',views.room),
+    path('chat/<str:room_name>/',views.room),
 
 ]
