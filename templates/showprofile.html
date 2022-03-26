@@ -114,7 +114,7 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="container emp-profile">
-            <form action="http://127.0.0.1:8000/auth/profile" method="post">
+            <form action="http://127.0.0.1:8000/group" method="post">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
@@ -147,6 +147,7 @@
                     <div class="col-md-2">
                       {% csrf_token %}
                         <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Groups"/>
                     </div>
                 </div>
                 <div class="row">

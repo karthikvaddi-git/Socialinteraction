@@ -15,7 +15,7 @@
                         <section class="hero is-primary">
                             <div class="hero-body">
                                 <p class="title">
-                                    Chatty
+                                    {{room_name}}
                                 </p>
                                 <p class="subtitle">
                                     A simple chat built with Django, Channels and Redis
@@ -95,11 +95,13 @@
                 chatSocket.send(JSON.stringify({
                     'message': message,
                     'username': userName,
-                    'room': roomName
+                    'room': roomName,
+
                 }));
 
                 messageInputDom.value = '';
             };
+
         </script>
     </body>
 </html>
