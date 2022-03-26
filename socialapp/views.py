@@ -29,8 +29,14 @@ def group(request):
     groupobj=Groupdata.objects.all()
     print(groupobj)
     context={'groupobj':groupobj}
-    print(groupobj[0].groupname)
-    print(groupobj[0].tag)
+
     print(context)
     print(request.user)
-    return render(request,'groupchat.html',context)
+    return render(request,'groupinfo.html',context)
+@login_required
+def creategroup(request):
+    if request.method=="GET":
+        return render(request,"create_group.html")
+    if request.method=="POST":
+        print(request.POST)
+        return render(request,"create_group.html")

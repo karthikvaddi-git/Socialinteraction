@@ -27,7 +27,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-
+from django.core.validators import MaxValueValidator, MinValueValidator,FileExtensionValidator
 # Create your views here.
 
 class UserRegistration(CreateView):
@@ -105,7 +105,7 @@ def login(request):
            auth_login(request, user)
 
 
-           return redirect('profilecreate')
+           return redirect('/')
 
 
 
@@ -117,10 +117,10 @@ def login(request):
     return render (request, 'registration/login.html', context)
 
 def logoutuser(request):
-    if request.method == "POST":
+
         logout(request)
         return redirect('user_login')
-    return redirect('/')
+
 
 
 
