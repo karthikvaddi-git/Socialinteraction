@@ -74,8 +74,5 @@ class userprofile(models.Model):
 
     def __str__(self):
         return self.name
-<<<<<<< HEAD
-    
-=======
->>>>>>> be2e9fc2e73967ce30829782263c07f20d93f9be
+
 
