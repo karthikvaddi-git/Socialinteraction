@@ -12,6 +12,8 @@ urlpatterns = [
     path('logout', views.logoutuser, name='logout'),    
     path('activate/<slug:uidb64>/<slug:token>/', views.activate, name='activate'),
     path('profilecreate/',views.profilecreate.as_view(),name='profilecreate'),
+    path('',views.home,name='home'),
+
 
 
     path('logout', views.logoutuser, name='logout'),    

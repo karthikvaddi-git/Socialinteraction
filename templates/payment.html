@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{% url 'fundraise' %}" method="POST" > {% csrf_token %}
+    <div class="container h-100 d-flex justify-content-center">
+    <div class="jumbotron my-auto">
+
+
+
+           <div class="mb-3" align="center">
+			   	<h3>SAVE NATURE</h3>
+		   </div>
+
+			  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Name</label>
+    <input type="text" class="form-control" id="nameid" name="nameid" aria-describedby="emailHelp">
+
+  </div>
+         <div class="mb-3">
+    <label for="exampleInputPassword1"  class="form-label">Phonenumber</label>
+    <input type="tel" class="form-control" placeholder="9999999999" id="phonenumber" name="phonenumber">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="emailid" name="emailid" aria-describedby="emailHelp">
+
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputPassword1"  class="form-label">Amount</label>
+    <input type="number" class="form-control" placeholder="500 ₹" id="amountid" name="amountid">
+  </div>
+
+<div class="mb-3">
+
+  <button type="submit"  id="rzp-button1">Proceed</button>
+
+	</div>
+
+        <div class="container mx-auto text-center mt-4" v-if="name && amount">
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+</div>
+
+
+
+
+</form>
+
+{% if payment %}
+<form class="text-center border border-light p-5"  action="{% url 'success' %}" method="POST">
+  {% csrf_token %}
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"
+    data-key="rzp_test_vr6PzGtdffw2AT"
+    data-amount="{{payment.amount}}"
+    data-currency="INR"
+    data-order_id="{{payment.id}}"
+    data-buttontext="Pay with Razorpay"
+    data-name="fundraiser"
+    data-description="donation "
+        data-prefill.contact="{{saveobj.phonenumber}}"
+
+    data-prefill.email="{{saveobj.email}}"
+    data-theme.color="#F37254">
+</script>
+</form>
+</div>
+</div>
+
+{% endif %}
+
+</body>
+</html>

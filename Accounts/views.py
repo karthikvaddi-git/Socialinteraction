@@ -29,6 +29,11 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.core.validators import MaxValueValidator, MinValueValidator,FileExtensionValidator
 # Create your views here.
+@login_required
+def home(request):
+
+    return render(request,"home.html")
+
 
 class UserRegistration(CreateView):
     template_name ='registration/signup.html'
@@ -95,15 +100,16 @@ def login(request):
        username = request.POST.get('username')
        password = request.POST.get('password')
        user = authenticate(request, username=username, password=password)
-       
-    if user is not None:
-        auth_login(request, user)
-        return redirect('/')
-    if user is None:
-        return redirect('profilecreate')
+       if user is not None:
+           auth_login(request, user)
+           return redirect('/')
+       if user is None:
+           return redirect('profilecreate')
 
-    else:
-        messages.info(request, 'Username or password are not correct')
+       else:
+           messages.info(request, 'Username or password are not correct')
+       
+
     
     context = {}
     return render (request, 'registration/login.html', context)
