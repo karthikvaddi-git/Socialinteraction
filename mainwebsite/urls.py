@@ -6,6 +6,9 @@ from django.urls import reverse_lazy
 
 urlpatterns = [
     path('profile', views.show_profile, name='profile'),
+    path('createprofile',views.createprofile,name='createprofile')
+
+
     
     
     ]

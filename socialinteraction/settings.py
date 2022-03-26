@@ -40,8 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'channels',
     'Accounts',
+
     'crispy_forms',
     'mainwebsite',
+
 ]
 
 MIDDLEWARE = [
@@ -148,7 +150,11 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_HOST_USER ='jhasapna544@gmail.com'
 EMAIL_HOST_PASSWORD = 'kmkkoxrtixeqpvyu'
+
 DEFAULT_FROM_EMAIL = 'Testing <jhasapna544@gmail.com>'
+
 
 # Media roots
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/dynamic/img')
+LOGIN_URL='user_login'
+LOGOUT_REDIRECT_URL='home'

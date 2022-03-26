@@ -22,6 +22,7 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
     phone_regex        = RegexValidator( regex = r'^\d{10}$',message = "phone number should exactly be in 10 digits")
     phone              = models.CharField(max_length=255, validators=[phone_regex], blank = True, null=True)
     REQUIRED_FIELDS=[]
+
     objects = CustomUserManager()
 class comments(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -73,4 +74,8 @@ class userprofile(models.Model):
 
     def __str__(self):
         return self.name
+<<<<<<< HEAD
+=======
+    
+>>>>>>> cb3a11076357dee7de16e92b5e349be3fb0f2888
 

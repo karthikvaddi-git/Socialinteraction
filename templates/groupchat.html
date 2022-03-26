@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul>
+    {% for obj in groupobj %}
+  <li><a href="chat/{{obj.groupname}}/" >{{obj.groupname}}</a></li>
+
+    <li>{{obj.admin}}</li>
+
+</ul>
+{% endfor %}
+</body>
+</html>

@@ -13,10 +13,8 @@ from crispy_forms.layout import Submit
 from Accounts.forms import *
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 from Accounts.forms import *
-
-
-
 from socialinteraction import settings
 from django.core.mail import EmailMessage
 from .tokens import account_activation_token
@@ -29,6 +27,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
 
 class UserRegistration(CreateView):
@@ -89,9 +88,13 @@ def activate(request, uidb64, token):
         # return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
         return HttpResponse('Activation link is invalid or your account is already Verified! Try To Login')
-                
-        
-    
+
+
+@login_required
+def home(request):
+    return render(request,"home.html")
+
+
 def login(request):
     if request.method == 'POST':
        username = request.POST.get('username')
@@ -100,7 +103,15 @@ def login(request):
        
        if user is not None:
            auth_login(request, user)
+<<<<<<< HEAD
            return redirect('auth/profile')
+=======
+
+           return redirect('profilecreate')
+
+
+
+>>>>>>> cb3a11076357dee7de16e92b5e349be3fb0f2888
        else:
            messages.info(request, 'Username or password are not correct')
     
@@ -113,11 +124,14 @@ def logoutuser(request):
         return redirect('user_login')
     return redirect('/')
 
+
+
+
 def addintrest(request):
     
     return render(request, 'intrestpage.html')
 
-def profile(request):
+def profilecreate(request):
     if request.method == "POST":
         form = userprofile(request.POST)
         profile = form.save(commit=False)
@@ -131,5 +145,6 @@ def profile(request):
     context = {
         'u_form': u_form,
     }
-    return render(request, 'profile.html', context )
+    return redirect('profile')
+
 

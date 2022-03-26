@@ -3,7 +3,9 @@ from django.urls import path,include
 from . import views
 urlpatterns = [
    # path('admin/', admin.site.urls),
-    path('',views.index),
-    path('<str:room_name>/',views.room),
+    path('group',views.group),
+    path('chat/',views.index),
+    path('chat/<str:room_name>/',views.room),
+
 
 ]
