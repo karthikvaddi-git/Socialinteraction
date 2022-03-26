@@ -111,7 +111,7 @@ def login(request):
 
 
        else:
-           messages.info(request, 'Username or password are not correct')
+           messages.info(request, 'Username or password are not check username  correct')
     
     context = {}
     return render (request, 'registration/login.html', context)
