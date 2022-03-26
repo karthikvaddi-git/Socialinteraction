@@ -7,3 +7,14 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ('email','phone',)
+
+class userintrest(ModelForm):
+    class Meta:
+        model = userprofile
+        fields = ('intrests',)
+        
+class userprofiles(ModelForm):
+    class Meta:
+        model = userprofile
+        fields = ('profileimage','description','location','intrests',)
+

@@ -14,8 +14,7 @@ from Accounts.forms import *
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-
-
+from Accounts.forms import *
 from socialinteraction import settings
 from django.core.mail import EmailMessage
 from .tokens import account_activation_token
@@ -28,6 +27,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+from django.core.validators import MaxValueValidator, MinValueValidator,FileExtensionValidator
 # Create your views here.
 
 class UserRegistration(CreateView):
@@ -88,29 +88,43 @@ def activate(request, uidb64, token):
         # return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
         return HttpResponse('Activation link is invalid or your account is already Verified! Try To Login')
-                
-        
-    
+
+
 def login(request):
     if request.method == 'POST':
        username = request.POST.get('username')
        password = request.POST.get('password')
        user = authenticate(request, username=username, password=password)
        
-       if user is not None:
-           auth_login(request, user)
-           return redirect('profile')
-       else:
-           messages.info(request, 'Username or password are not correct')
+    if user is not None:
+        auth_login(request, user)
+        return redirect('/')
+    if user is None:
+        return redirect('profilecreate')
+
+    else:
+        messages.info(request, 'Username or password are not correct')
     
     context = {}
     return render (request, 'registration/login.html', context)
 
 def logoutuser(request):
-    if request.method == "POST":
         logout(request)
         return redirect('user_login')
-    return redirect('/')
+    
+def addintrest(request):
+    return render(request, 'intrestpage.html')
 
-def profile(request):
-    return redirect('/')
+
+class profilecreate(CreateView):
+    template_name = 'profile.html'
+    success_url = '/'
+    form_class = userprofiles
+    
+    def form_valid(self, form):
+        user = self.request.user
+        user.save()
+        form.instance.user= user
+        return super().form_valid(form)
+    
+
