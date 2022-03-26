@@ -7,10 +7,19 @@ from django.urls import reverse_lazy
 urlpatterns = [
     path('signup/', views.UserRegistration.as_view(), name='signup'),
     path('login', views.login, name='user_login'),
+<<<<<<< HEAD
     path('', views.login, name='user_login'),
     path('logout', views.logoutuser, name='logout'),    
     path('activate/<slug:uidb64>/<slug:token>/', views.activate, name='activate'),
     path('profile',views.profile,name='profile'),
+=======
+    path('logout', views.logoutuser, name='logout'),    
+    path('activate/<slug:uidb64>/<slug:token>/', views.activate, name='activate'),
+    path('intrest', views.addintrest, name='addintrest'),
+    path('profile', views.profile, name='profile'),
+    
+    
+>>>>>>> origin/shivamjha
     
     #Forgot password
     path('reset/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name = "registration/password_reset_form.html", success_url = reverse_lazy("password_reset_complete")), name="password_reset_confirm"),  # 3
