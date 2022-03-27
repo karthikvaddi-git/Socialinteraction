@@ -77,3 +77,6 @@ class createfundraise(CreateView):
         form.instance.user= user
         return super().form_valid(form)
 
+def fundraiseposts(request):
+    posts = fundraiser.objects.all()
+    return render(request, "fundraisepost.html",{'posts': posts})
