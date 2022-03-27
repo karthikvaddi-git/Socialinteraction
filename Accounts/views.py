@@ -111,22 +111,19 @@ def login(request):
            messages.info(request, 'Username or password are not correct')
        
 
-
        if user is not None:
            auth_login(request, user)
-
-
-           return redirect('home')
-
-
-
-
+           return redirect('/')
        else:
+
            messages.info(request, 'Username or password are not check username  correct')
 
 
     else:
         messages.info(request, 'Username or password are not correct')
+
+
+
 
 
     
@@ -152,13 +149,4 @@ class profilecreate(CreateView):
         form.instance.user= user
         return super().form_valid(form)
     
-@login_required
-def home(request):
-    try:
-        person = userprofile.objects.get(user=request.user)
-    except userprofile.DoesNotExist:
-        return redirect('profilecreate')
 
-
-
-    return render(request,'home.html',{"person":person})

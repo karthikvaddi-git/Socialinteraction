@@ -128,12 +128,11 @@
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>
-                                      {{person}}
+                                      {{user.name}}
                                     </h5>
                                     <h6>
                                         {{person.location}}
                                     </h6>
-
                                     <p class="proile-rating">About Me : <span>{{person.description}}</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
@@ -146,10 +145,6 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                      {% csrf_token %}
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
-                        <br>
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Groups"/>
                     </div>
                 </div>
                 <div class="row">
@@ -160,9 +155,9 @@
                             <a href="">Bootsnipp Profile</a><br/>
                             <a href="">Bootply Profile</a>
                             <p>INTRESTS</p>
-
-                            {{person.intrest}}
-
+                            {% for i in intrest %}
+                            <a href="">{{i}}</a><br/>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -181,7 +176,7 @@
                                                 <label>Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{user.email}}</p>
+                                                <p>{{user.name}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -189,15 +184,7 @@
                                                 <label>Phone</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>7396450988</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Profession</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Web Developer and Designer</p>
+                                                <p>{{user.phone}}</p>
                                             </div>
                                         </div>
                             </div>
@@ -252,7 +239,7 @@
                         </div>
                     </div>
                 </div>
-            </form>           
+            </form>
         </div>
     </div>
 

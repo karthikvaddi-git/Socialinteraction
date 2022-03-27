@@ -60,7 +60,7 @@ class fundraiser(models.Model):
         return self.amount - self.amount_received
     
     def __str__(self):
-        return self.title + " recives $" +str(self.current_amount)
+        return self.title + " i want more $" +str(self.current_amount)
 
 import weakref
 
@@ -76,4 +76,11 @@ class userprofile(models.Model):
         
     def __str__(self):
         return str(self.user)
+
+    @property
+    def intrestlist(self):
+        intrest = str(self.intrests.split(','))
+        return intrest
+        
+
 

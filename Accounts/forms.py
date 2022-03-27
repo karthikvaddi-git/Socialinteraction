@@ -6,7 +6,7 @@ from django import forms
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ('email','phone',)
+        fields = ('name','email','phone',)
 
 class userintrest(ModelForm):
     class Meta:
