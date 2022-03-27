@@ -62,6 +62,8 @@ class fundraiser(models.Model):
     def __str__(self):
         return self.title + " recives $" +str(self.current_amount)
 
+import weakref
+
 class userprofile(models.Model):
     user         = models.OneToOneField(CustomUser,on_delete=models.CASCADE)
     profileimage = models.ImageField(default=" ",upload_to='media/dynamic/img/user_image')
@@ -70,6 +72,10 @@ class userprofile(models.Model):
     intrests = models.CharField(max_length=150)
     date_joined = models.DateTimeField(auto_now_add=True,blank=True,null=True)
 
+    @property
+    def intrestlist(self):
+        self.intrests.split(',')
+        
     def __str__(self):
         return self.name
 

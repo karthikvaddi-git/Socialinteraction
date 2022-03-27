@@ -22,6 +22,10 @@ class Groupdata(models.Model):
     admin=models.ForeignKey( settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING,related_name="admin")
     tags=models.CharField(max_length=200)
     groupmembers = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name="groupmember")
+    
+    @property
+    def taglist(self):
+        self.tags.split(',')
 
     def __str__(self):
        return self.groupname

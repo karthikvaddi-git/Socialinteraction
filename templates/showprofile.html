@@ -159,11 +159,9 @@
                             <a href="">Bootsnipp Profile</a><br/>
                             <a href="">Bootply Profile</a>
                             <p>INTRESTS</p>
-                            <a href="">Web Designer</a><br/>
-                            <a href="">Web Developer</a><br/>
-                            <a href="">WordPress</a><br/>
-                            <a href="">WooCommerce</a><br/>
-                            <a href="">PHP, .Net</a><br/>
+                            {% for i in person %}
+                            <a href="">{{i.intrestlist}}</a><br/>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="col-md-8">

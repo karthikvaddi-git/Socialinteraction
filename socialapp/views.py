@@ -27,13 +27,20 @@ def room(request, room_name):
 
 @login_required
 def group(request):
-    groupobj=Groupdata.objects.all()
-    print(groupobj)
-    context={'groupobj':groupobj}
+    try:
+        groupobj = Groupdata.objects.filter(admin=request.user)
+        allgroup = Groupdata.objects.all()
+        print(groupobj)
+        context = {'groupobj': groupobj,'allgroup':allgroup}
+        print(context)
+        print(request.user)
+        return render(request, 'groupinfo.html', context)
 
-    print(context)
-    print(request.user)
-    return render(request,'groupinfo.html',context)
+    except Groupdata.DoesNotExist:
+        context={'groupobj':''}
+
+        return render(request,'groupinfo.html',context)
+
 
 class creategroup(LoginRequiredMixin,CreateView):
     template_name = 'create_group.html'
