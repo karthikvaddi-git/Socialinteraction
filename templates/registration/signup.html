@@ -71,6 +71,13 @@ body {
               <form method="POST">
                 {% csrf_token %}
                 <div class="form-floating mb-3">
+                  <p class="errorlist">{{ form.non_field_errors }}</p>
+                    {% comment %} <input type="text" class="form-control" id="floatingInputUsername" placeholder="myusername" required autofocus> {% endcomment %}
+                    <label for="floatingInputEmail">Name</label>
+                    {{ form.name.errors }}
+                    {{ form.name|addclass:'form-control'|addplaceholder:'Your Name'}}
+                  </div>
+                <div class="form-floating mb-3">
                 <p class="errorlist">{{ form.non_field_errors }}</p>
                   {% comment %} <input type="text" class="form-control" id="floatingInputUsername" placeholder="myusername" required autofocus> {% endcomment %}
                   <label for="floatingInputEmail">Your Email</label>
@@ -100,7 +107,7 @@ body {
                   <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" type="submit">Register</button>
                 </div>
   
-                <h5><a class="d-block text-center mt-2 small" href="login">Have an account? Sign In</a></h5>
+                <h5><a class="d-block text-center mt-2 small" href={% url 'user_login' %} >Have an account? Sign In</a></h5>
   
               </form>
             </div>
