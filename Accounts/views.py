@@ -76,6 +76,7 @@ class UserRegistration(CreateView):
                 return self.render_to_response({'form':form})
         else:
             return response
+@login_required
 def home(request):
     return render(request, 'home.html')
     
