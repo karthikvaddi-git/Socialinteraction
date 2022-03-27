@@ -62,15 +62,18 @@
                     {% endif %}
 
                   <hr>
-                  <h5 class="mb-3">Suggested Groups : </h5>
+                  <h5 class="mb-3">Sub Groups : </h5>
+                  {% for obj in allgroup %}
                   <div class="mb-3 rounded p-2 border row bg-white mx-1"  style="box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.103)">
                         <div class="col-12 col-sm-4 col-md-3 p-2">
-                            <img class="d-block mx-auto mb-3" src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" style=" border : 1px solid blue ;border-radius: 50%; height: 100px; width : 100px;" alt="...">
-                            <button class="btn btn-primary py-1 px-3 d-block mx-auto">Join</button>
-                        </div>
+                            <img class="d-block mx-auto mb-3" src="{{obj.image.url}}" style=" border : 1px solid blue ;border-radius: 50%; height: 100px; width : 100px;" alt="...">
+                            <form action="chat/{{obj.groupname}}">
+                            <button  class="btn btn-primary py-1 px-3 d-block mx-auto">Join</button>
+                            </form>
+                          </div>
                         <div class="col-12 col-sm-8 col-mc-9 p-2">
-                            <h5>Group Name</h5>
-                            <p class="mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore placeat necessitatibus eveniet perspiciatis  </p>
+                            <h5>{{obj.groupname}}</h5>
+                            <p class="mb-3">{{obj.description}}</p>
                             <ul class="ps-0"> 
                                 <li type="none" class="me-2 mb-2 d-inline-block border border-secondary rounded-pill py-1 px-3">Interest1</li>
                                 <li type="none" class="me-2 mb-2 d-inline-block border border-secondary rounded-pill py-1 px-3">Interest1</li>
@@ -78,6 +81,7 @@
                             </ul>
                         </div>
                   </div>
+                  {% endfor %}
             </div>
             <div class="col-1"></div>
         </div>

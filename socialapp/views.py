@@ -29,9 +29,9 @@ def room(request, room_name):
 def group(request):
     try:
         groupobj = Groupdata.objects.filter(admin=request.user)
+        allgroup = Groupdata.objects.all()
         print(groupobj)
-        context = {'groupobj': groupobj}
-
+        context = {'groupobj': groupobj,'allgroup':allgroup}
         print(context)
         print(request.user)
         return render(request, 'groupinfo.html', context)
