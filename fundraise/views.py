@@ -4,6 +4,9 @@ from django.http import HttpResponse
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 import razorpay
+from socialinteraction import settings
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 
 def fundraisegroup(request,fundpost):
     return HttpResponse(fundpost)
@@ -59,7 +62,19 @@ def success(request):
         try:
 
                 status = client.utility.verify_payment_signature(params_dict)
-
+                to_email = request.user.email
+                mail_subject = "Activate your account"
+                message =render_to_string('success.html',{
+                'user': request.user,
+                
+            })
+                send_mail(
+                    subject=mail_subject,
+                    message=message,
+                    from_email=settings.EMAIL_HOST_USER,
+                    recipient_list= [to_email],
+                    fail_silently=False,    # if it fails due to some error or email id then it get silenced without affecting others
+                )
                 return render(request,"success.html")
 
 
