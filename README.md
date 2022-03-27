@@ -20,6 +20,11 @@ Install my-project with pip install
   pip install -r requirement.txt
 ```
 
+## Project deployment
+
+working on project deployment
+
+Link : SocialInteraction.pythonanywhere.com
 ## Features
 
 - Fundrasing
