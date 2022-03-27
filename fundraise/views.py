@@ -9,10 +9,7 @@ import razorpay
 
 def pay(request):
     if request.method=="POST":
-        phone=request.POST.get('phonenumber')
 
-        name=request.POST.get('nameid')
-        email=request.POST.get('emailid')
         amount=request.POST.get('amountid')
         amount=int(amount)*100
 
@@ -68,5 +65,6 @@ def success(request):
 
 
 
-
+def createfundraise(request):
+    return HttpResponse("in create fundraiser")
 
