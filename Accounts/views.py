@@ -71,7 +71,8 @@ class UserRegistration(CreateView):
                 return self.render_to_response({'form':form})
         else:
             return response
-    
+def home(request):
+    return render(request, 'home.html')
     
 def activate(request, uidb64, token):
     try:
