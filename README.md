@@ -17,7 +17,7 @@ Install my-project with pip install
 
 ```bash
   git clone https://github.com/karthikvaddi-git/Socialinteraction.git
-  pip install -r requirements.txt
+  pip install -r requirement.txt
 ```
 
 ## Features
