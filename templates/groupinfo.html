@@ -56,6 +56,7 @@
                       </div>
                     {% endfor %}
                   </div>
+
                   {% else %}
                     <p>you have not created groups</p>
                     <a href="">
@@ -75,9 +76,8 @@
                             <h5>{{obj.groupname}}</h5>
                             <p class="mb-3">{{obj.description}}</p>
                             <ul class="ps-0"> 
-                                <li type="none" class="me-2 mb-2 d-inline-block border border-secondary rounded-pill py-1 px-3">Interest1</li>
-                                <li type="none" class="me-2 mb-2 d-inline-block border border-secondary rounded-pill py-1 px-3">Interest1</li>
-                                <li type="none" class="me-2 mb-2 d-inline-block border border-secondary rounded-pill py-1 px-3">Interest1</li>
+
+                                <li type="none" class="me-2 mb-2 d-inline-block border border-secondary rounded-pill py-1 px-3">{{obj.tags}}</li>
                             </ul>
                         </div>
                   </div>

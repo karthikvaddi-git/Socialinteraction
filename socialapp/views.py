@@ -23,7 +23,9 @@ def room(request, room_name):
     print(str(request.user))
     username=str(request.user)
     messages = Message.objects.filter(room=room_name)[0:25]
-    return render(request, 'room.html', {'room_name': room_name, 'username': username, 'messages': messages})
+    groupobj=Groupdata.objects.get(groupname=room_name)
+
+    return render(request, 'room.html', {'room_name': room_name, 'username': username, 'messages': messages,'groupobj':groupobj})
 
 @login_required
 def group(request):

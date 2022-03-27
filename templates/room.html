@@ -14,11 +14,15 @@
                     <div class="column is-6 is-offset-3 mb-6">
                         <section class="hero is-primary">
                             <div class="hero-body">
+                                 <div class="row g-0">
+                              <div class="col-sm-4 p-2">
+                                <img class="d-block mx-auto mt-3" src="{{groupobj.image.url}}" style=" border : 1px solid blue ;border-radius: 50%; height: 100px; width : 100px;" alt="...">
+                              </div>
                                 <p class="title">
                                     {{room_name}}
                                 </p>
                                 <p class="subtitle">
-                                    A simple chat built with Django, Channels and Redis
+                                 {{groupobj.description}}
                                 </p>
                             </div>
                         </section>

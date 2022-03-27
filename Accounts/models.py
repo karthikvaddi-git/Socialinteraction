@@ -65,17 +65,15 @@ class fundraiser(models.Model):
 import weakref
 
 class userprofile(models.Model):
-    user         = models.OneToOneField(CustomUser,on_delete=models.CASCADE)
+    user= models.OneToOneField(CustomUser,on_delete=models.CASCADE)
     profileimage = models.ImageField(default=" ",upload_to='media/dynamic/img/user_image')
     description = models.TextField()
     location = models.CharField(default=" ",max_length=150)
     intrests = models.CharField(max_length=150)
     date_joined = models.DateTimeField(auto_now_add=True,blank=True,null=True)
 
-    @property
-    def intrestlist(self):
-        self.intrests.split(',')
+
         
     def __str__(self):
-        return self.name
+        return str(self.user)
 

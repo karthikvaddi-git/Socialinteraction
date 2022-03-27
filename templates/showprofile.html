@@ -128,11 +128,12 @@
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>
-                                      {{person.name}}
+                                      {{person}}
                                     </h5>
                                     <h6>
                                         {{person.location}}
                                     </h6>
+
                                     <p class="proile-rating">About Me : <span>{{person.description}}</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
@@ -159,9 +160,9 @@
                             <a href="">Bootsnipp Profile</a><br/>
                             <a href="">Bootply Profile</a>
                             <p>INTRESTS</p>
-                            {% for i in person %}
-                            <a href="">{{i.intrestlist}}</a><br/>
-                            {% endfor %}
+
+                            {{person.intrest}}
+
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -180,7 +181,7 @@
                                                 <label>Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{person.name}}</p>
+                                                <p>{{user.email}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -188,7 +189,7 @@
                                                 <label>Phone</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>123 456 7890</p>
+                                                <p>7396450988</p>
                                             </div>
                                         </div>
                                         <div class="row">
