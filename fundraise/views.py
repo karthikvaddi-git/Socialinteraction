@@ -5,12 +5,17 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import razorpay
 
+def fundraisegroup(request,fundpost):
+    return HttpResponse(fundpost)
+
 
 def pay(request):
     if request.method=="POST":
 
         amount=request.POST.get('amountid')
         amount=int(amount)*100
+        print(request.user)
+        print(request.user.phone)
 
 
 
@@ -22,7 +27,11 @@ def pay(request):
 
         context={'payment':payment}
 
-        return render(request, "payment.html",{'payment':payment})
+
+
+
+        return render(request, "payment.html",{'payment':payment,'phonenumber':request.user.name,
+        'email':request.user.email})
 
     else:
         return render(request,"payment.html")
@@ -51,16 +60,16 @@ def success(request):
 
                 status = client.utility.verify_payment_signature(params_dict)
 
-                return HttpResponse("payemnet succesful")
+                return render(request,"success.html")
 
 
         except:
 
 
                 # if there is an error while capturing payment.
-                return HttpResponse(" arey paymentfail.html")
+                return render(request,"failure.html")
         else:
-            return HttpResponse("payemnet succesful")
+            return render(request,"success.html")
 
 
 

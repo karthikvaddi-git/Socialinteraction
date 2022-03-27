@@ -1,3 +1,4 @@
+{% include 'navbar.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,9 +59,9 @@
     data-buttontext="Pay with Razorpay"
     data-name="fundraiser"
     data-description="donation "
-        data-prefill.contact="{{saveobj.phonenumber}}"
+        data-prefill.contact="{{phonenumber}}"
 
-    data-prefill.email="{{saveobj.email}}"
+    data-prefill.email="{{email}}"
     data-theme.color="#F37254">
 </script>
 </form>

@@ -127,7 +127,10 @@
   </head>
   <body>
     <h1 class="text-center">Fundraiser Post</h1>
-    {% for i in posts %}
+
+
+
+        {% for i in posts %}
     <div class="container">
         <div class="container py-4 my-4 mx-auto d-flex flex-column">
             <div class="header">
@@ -151,14 +154,68 @@
             </div>
             <div class="footer d-flex flex-column mt-5">
                 <div class="row r4">
+                     <div class="mb-3">
+
+<form action="{% url 'fundraisepay' %}" method="POST" > {% csrf_token %}
+    <div class="container h-100 d-flex justify-content-center">
+    <div class="jumbotron my-auto">
+
+
+
+
+
+
+
+
+  <div class="mb-3">
+    <label for="exampleInputPassword1"  class="form-label">Amount</label>
+    <input type="number" class="form-control" placeholder="500 ₹" id="amountid" name="amountid">
+  </div>
+
+<div class="mb-3">
+
+  <button type="submit"  id="rzp-button1">Proceed</button>
+
+	</div>
+
+        <div class="container mx-auto text-center mt-4" v-if="name && amount">
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+</div>
+
+
+
+
+</form>
+
                     <div class="col-md-2 myt des"><a href="#">Description</a></div>
-                    <div class="col-md-2 mio offset-md-4"><a href="#">Want {{i.amount}}$</a></div>
-                    <div class="col-md-2 myt "><button type="button" class="btn btn-outline-warning"><a href="#">Pay Me</a></button></div>
+                    <div class="col-md-2 mio offset-md-4">Want {{i.amount}}$</a></div>
                 </div>
             </div>
         </div>
     </div>
+
     {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

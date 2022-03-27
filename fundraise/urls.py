@@ -7,6 +7,9 @@ from fundraise import views
 urlpatterns = [
    path('fundraise',views.fundraiseposts,name='fundraise'),
    path('createfundraise',views.createfundraise.as_view(),name='createfundraise'),
+   path('fundraisepost/<str:fundpost>/',views.fundraisegroup,name='fundraisegroup'),
+   path('fundraisepay',views.pay,name='fundraisepay'),
+
 
 
    path('success',views.success,name='success')
