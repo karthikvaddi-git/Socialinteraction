@@ -138,4 +138,11 @@ class profilecreate(CreateView):
     
 @login_required
 def home(request):
-    return render(request,'home.html')
+    try:
+        person = userprofile.objects.get(user=request.user)
+    except userprofile.DoesNotExist:
+        return redirect('profilecreate')
+
+
+
+    return render(request,'home.html',{"person":person})

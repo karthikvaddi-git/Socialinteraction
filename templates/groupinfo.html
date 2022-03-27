@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% include "home.html" %}
+{% include "navbar.html" %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -35,6 +35,7 @@
                 <ul>
 
                 <h5 class="mb-3">Your Groups : </h5>
+                    {% if groupobj %}
                 <div class="row row-cols-1 row-cols-md-2 g-4">
                     {% for obj in groupobj %}
                     <div class="col">
@@ -55,6 +56,11 @@
                       </div>
                     {% endfor %}
                   </div>
+                  {% else %}
+                    <p>you have not created groups</p>
+                    <a href="">
+                    {% endif %}
+
                   <hr>
                   <h5 class="mb-3">Suggested Groups : </h5>
                   <div class="mb-3 rounded p-2 border row bg-white mx-1"  style="box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.103)">
