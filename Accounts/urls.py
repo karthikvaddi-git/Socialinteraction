@@ -15,6 +15,7 @@ urlpatterns = [
     path('',views.home,name='home'),
 
 
+
     path('logout', views.logoutuser, name='logout'),    
     path('activate/<slug:uidb64>/<slug:token>/', views.activate, name='activate'),
     path('intrest', views.addintrest, name='addintrest'),
