@@ -74,7 +74,8 @@ class userprofile(models.Model):
 
     @property
     def intrestlist(self):
-        self.intrests.split(',')
+        intrest = str(self.intrests.split(','))
+        return intrest
         
     def __str__(self):
         return self.name
