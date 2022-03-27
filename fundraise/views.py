@@ -1,6 +1,5 @@
 from django.shortcuts import render
-
-
+from .forms import *
 from django.http import HttpResponse
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
@@ -65,6 +64,16 @@ def success(request):
 
 
 
-def createfundraise(request):
-    return HttpResponse("in create fundraiser")
+from django.views.generic import CreateView
+from django.urls import reverse_lazy, reverse
+class createfundraise(CreateView):
+    template_name = 'fundraiserpost.html'
+    success_url = '/'
+    form_class = fundraiserform
+    
+    def form_valid(self, form):
+        user = self.request.user
+        user.save()
+        form.instance.user= user
+        return super().form_valid(form)
 

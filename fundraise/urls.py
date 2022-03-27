@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from fundraise import views
 urlpatterns = [
    path('fundraise',views.pay,name='fundraise'),
-   path('createfundraise',views.createfundraise,name='createfundraise'),
+   path('createfundraise',views.createfundraise.as_view(),name='createfundraise'),
 
 
    path('success',views.success,name='success')

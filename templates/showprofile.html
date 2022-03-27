@@ -128,7 +128,7 @@
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>
-                                      {{person.name}}
+                                      {{user.name}}
                                     </h5>
                                     <h6>
                                         {{person.location}}
@@ -145,10 +145,6 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                      {% csrf_token %}
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
-                        <br>
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Groups"/>
                     </div>
                 </div>
                 <div class="row">
@@ -180,7 +176,7 @@
                                                 <label>Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{person.name}}</p>
+                                                <p>{{user.name}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -188,15 +184,7 @@
                                                 <label>Phone</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>123 456 7890</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Profession</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Web Developer and Designer</p>
+                                                <p>{{user.phone}}</p>
                                             </div>
                                         </div>
                             </div>
